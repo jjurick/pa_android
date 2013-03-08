@@ -6,10 +6,14 @@
     <title>Pennsylvania Android Speed Tests - October 2012</title>
     <link rel="shortcut icon" href="http://cartodb.com/favicon/favicon_32x32.ico" />
     <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css" />
+    <link rel="stylesheet" href="../lib/cartodb.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/lib/wax.g.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/lib/cartodb-gmapsv3.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/lib/dat.gui.min.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/lib/backbone.js"></script>
     <script type="text/javascript" src="http://cartodb.github.com/torque/lib/class.js"></script>
     <script type="text/javascript" src="http://cartodb.github.com/torque/lib/backbone.cartodb.js"></script>
     <script type="text/javascript" src="http://cartodb.github.com/torque/src/canvas_tile_layer.js"></script>
@@ -30,10 +34,10 @@
             mapTypeId:google.maps.MapTypeId.SATELLITE,
             mapTypeControl:false,
             minZoom:1,
-            scrollwheel: true,
+            scrollwheel: false,
             panControl: false,
             zoomControl: true,
-            scaleControl: true,
+            scaleControl: false,
             streetViewControl: false,
             overviewMapControl: false,
         });
@@ -71,16 +75,16 @@
             user: user_name,
             table: table_name,
             column: column_name,
-            cumulative: true,
-            resolution: 8,
-            steps: 400,
-            fps: 10,
-            fitbounds: true,
+            cumulative: false,
+            resolution: 8,  <!--original is 8
+            steps: 400,     <!--original is 400
+            fps: 10,  		<!--original is 24
+            fitbounds: false,
             clock: true,
             blendmode: 'source-over',
-            trails: false,
+            trails: true,
             point_type:'circle',
-            cellsize:.9
+            cellsize:2 	 	<!--original is 2
         }
 
         var torque = null;
