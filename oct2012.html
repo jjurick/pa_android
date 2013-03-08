@@ -30,10 +30,10 @@
             mapTypeId:google.maps.MapTypeId.SATELLITE,
             mapTypeControl:false,
             minZoom:1,
-            scrollwheel: false,
+            scrollwheel: true,
             panControl: false,
             zoomControl: true,
-            scaleControl: false,
+            scaleControl: true,
             streetViewControl: false,
             overviewMapControl: false,
         });
@@ -42,7 +42,7 @@
         map_style.google_maps_customization_style = [
             {
                 stylers:[
-                    { invert_lightness:true },
+                    { invert_lightness:false },
                     { weight:1 },
                     { saturation:-100 },
                     { lightness:-40 }
@@ -74,7 +74,7 @@
             cumulative: true,
             resolution: 8,
             steps: 400,
-            fps: 24,
+            fps: 10,
             fitbounds: false,
             clock: true,
             blendmode: 'source-over',
