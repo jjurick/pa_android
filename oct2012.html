@@ -6,22 +6,23 @@
     <title>Pennsylvania Android Speed Tests - October 2012</title>
     <link rel="shortcut icon" href="http://cartodb.com/favicon/favicon_32x32.ico" />
     <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../lib/cartodb.css">
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript" src="../lib/wax.g.js"></script>
-    <script type="text/javascript" src="../lib/cartodb-gmapsv3.js"></script>
-    <script type="text/javascript" src="../lib/dat.gui.min.js"></script>
-    <script type="text/javascript" src="../lib/underscore-min.js"></script>
-    <script type="text/javascript" src="../lib/backbone.js"></script>
-    <script type="text/javascript" src="../lib/class.js"></script>
-    <script type="text/javascript" src="../lib/backbone.cartodb.js"></script>
-    <script type="text/javascript" src="../src/canvas_tile_layer.js"></script>
-    <script type="text/javascript" src="../src/grid_layer.js"></script>
-    <script type="text/javascript" src="../src/torque.js"></script>
+    <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/lib/class.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/lib/backbone.cartodb.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/src/canvas_tile_layer.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/src/grid_layer.js"></script>
+    <script type="text/javascript" src="http://cartodb.github.com/torque/src/torque.js"></script>
     <script type="text/javascript">
     var gui;
     function initialize() {
+
+        var user_name = "bakerbroadband";
+        var table_name = "jeremy_test";
+        var column_name = "test_date";
+
         // initialise the google map
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
             center: new google.maps.LatLng(41.124,-77.608),
@@ -29,7 +30,7 @@
             mapTypeId:google.maps.MapTypeId.SATELLITE,
             mapTypeControl:false,
             minZoom:1,
-            scrollwheel: true,
+            scrollwheel: false,
             panControl: false,
             zoomControl: true,
             scaleControl: false,
@@ -41,7 +42,7 @@
         map_style.google_maps_customization_style = [
             {
                 stylers:[
-                    { invert_lightness:false },
+                    { invert_lightness:true },
                     { weight:1 },
                     { saturation:-100 },
                     { lightness:-40 }
@@ -67,19 +68,19 @@
         map.setOptions({styles:map_style.google_maps_customization_style});
 
         var TorqueOptions = {
-            user: 'bakerbroadband',
-            table: 'jeremy_test',
-            column: 'test_date',
+            user: user_name,
+            table: table_name,
+            column: column_name,
             cumulative: true,
-            resolution: 2,
-            steps: 750,
+            resolution: 8,
+            steps: 400,
             fps: 24,
             fitbounds: false,
             clock: true,
-            blendmode: 'lighter',
-            trails: true,
+            blendmode: 'source-over',
+            trails: false,
             point_type:'circle',
-    		subtitles: true
+            cellsize:2
         }
 
         var torque = null;
